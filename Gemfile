@@ -21,6 +21,7 @@ end
 group :development do
   gem 'erb2haml'
   gem 'seed_dump'
+  gem 'magic_encoding'
 end
 
 group :test do
@@ -37,6 +38,8 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-youtube'
+gem 'omniauth-vimeo'
 gem 'koala'
 gem 'twitter'
 gem 'feedbag'
