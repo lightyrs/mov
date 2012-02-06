@@ -14,6 +14,7 @@ class CreateIdentities < ActiveRecord::Migration
       t.timestamps
     end
     add_index :identities, [:uid, :provider], :unique => true
+    add_index :identities, :user_id
   end
 
   def down

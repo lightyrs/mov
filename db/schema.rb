@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120205233346) do
+ActiveRecord::Schema.define(:version => 20120206043956) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,24 @@ ActiveRecord::Schema.define(:version => 20120205233346) do
   add_index "artists", ["echonest_id"], :name => "index_artists_on_echonest_id", :unique => true
   add_index "artists", ["name"], :name => "index_artists_on_name", :unique => true
 
+  create_table "artists_music_videos", :id => false, :force => true do |t|
+    t.integer "artist_id"
+    t.integer "music_video_id"
+  end
+
+  add_index "artists_music_videos", ["artist_id"], :name => "index_artists_music_videos_on_artist_id"
+  add_index "artists_music_videos", ["music_video_id"], :name => "index_artists_music_videos_on_music_video_id"
+
+  create_table "favorites", :force => true do |t|
+    t.integer  "music_video_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "favorites", ["music_video_id"], :name => "index_favorites_on_music_video_id"
+  add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
+
   create_table "identities", :force => true do |t|
     t.string   "uid"
     t.string   "provider"
@@ -46,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20120205233346) do
   end
 
   add_index "identities", ["uid", "provider"], :name => "index_identities_on_uid_and_provider", :unique => true
+  add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
 
   create_table "mentions", :force => true do |t|
     t.string   "url"
@@ -56,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20120205233346) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "mentions", ["source_id"], :name => "index_mentions_on_source_id"
   add_index "mentions", ["url"], :name => "index_mentions_on_url", :unique => true
 
   create_table "music_videos", :force => true do |t|

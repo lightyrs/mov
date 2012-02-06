@@ -9,6 +9,7 @@ class CreateMentions < ActiveRecord::Migration
       t.timestamps
     end
     add_index :mentions, :url, :unique => true
+    add_index :mentions, :source_id
   end
 
   def down
