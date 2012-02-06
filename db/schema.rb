@@ -36,12 +36,13 @@ ActiveRecord::Schema.define(:version => 20120205233346) do
     t.string   "email"
     t.string   "handle"
     t.string   "avatar"
-    t.string   "url"
+    t.string   "profile_url"
+    t.string   "presence_url"
     t.text     "bio"
     t.string   "hometown"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "identities", ["uid", "provider"], :name => "index_identities_on_uid_and_provider", :unique => true
