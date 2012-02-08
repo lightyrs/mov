@@ -1,6 +1,8 @@
+# -*- encoding : utf-8 -*-
 class Mention < ActiveRecord::Base
 
   belongs_to :source
 
-  validates :url, :uniqueness => true
+  validates :title, :presence => true
+  validates :url, :uniqueness => true, :presence => true
 end

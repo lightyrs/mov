@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'openssl'
 require 'open-uri'
 require 'net/https'

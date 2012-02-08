@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateArtistsMusicVideos < ActiveRecord::Migration
   def up
     create_table :artists_music_videos, :id => false do |t|

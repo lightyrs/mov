@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120206043956) do
+ActiveRecord::Schema.define(:version => 20120208010810) do
 
   create_table "artists", :force => true do |t|
     t.string   "name"
@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(:version => 20120206043956) do
   add_index "music_videos", ["url"], :name => "index_music_videos_on_url", :unique => true
   add_index "music_videos", ["video_id"], :name => "index_music_videos_on_video_id", :unique => true
 
+  create_table "relationships", :force => true do |t|
+    t.integer  "requestor_id",                     :null => false
+    t.string   "requestor_type",                   :null => false
+    t.integer  "requestee_id",                     :null => false
+    t.string   "requestee_type",                   :null => false
+    t.boolean  "restricted",     :default => true
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
   create_table "sources", :force => true do |t|
     t.string   "name"
     t.string   "url"
@@ -114,8 +124,7 @@ ActiveRecord::Schema.define(:version => 20120206043956) do
   add_index "sources", ["url"], :name => "index_sources_on_url", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "name"
     t.datetime "logged_in_at"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

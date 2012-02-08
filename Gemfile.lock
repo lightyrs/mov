@@ -122,6 +122,9 @@ GEM
       rack
     omniauth-facebook (1.2.0)
       omniauth-oauth2 (~> 1.0.0)
+    omniauth-google-oauth2 (0.1.9)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     omniauth-oauth (1.0.0)
       oauth
       omniauth (~> 1.0)
@@ -132,10 +135,9 @@ GEM
       omniauth-oauth (~> 1.0)
     omniauth-vimeo (0.0.1)
       omniauth-oauth (~> 1.0)
-    omniauth-youtube (1.0)
-      omniauth-oauth (~> 1.0)
     options (2.3.0)
       fattr
+    party_boy (0.3.4)
     polyglot (0.3.3)
     progress_bar (0.4.0)
       highline (~> 1.6.1)
@@ -233,9 +235,10 @@ DEPENDENCIES
   mysql2 (~> 0.3.10)
   omniauth
   omniauth-facebook
+  omniauth-google-oauth2
   omniauth-twitter
   omniauth-vimeo
-  omniauth-youtube
+  party_boy
   progress_bar
   rails (= 3.2.1)
   sass-rails (~> 3.2.3)

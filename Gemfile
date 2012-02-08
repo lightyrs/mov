@@ -22,6 +22,7 @@ group :development do
   gem 'erb2haml'
   gem 'seed_dump'
   gem 'magic_encoding'
+  gem 'whenever', :require => false
 end
 
 group :test do
@@ -38,12 +39,11 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'omniauth-youtube'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-vimeo'
 gem 'koala'
 gem 'twitter'
 gem 'feedbag'
 gem 'feedzirra'
 gem 'video_info'
-
-gem 'whenever', :require => false
+gem 'party_boy'

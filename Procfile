@@ -1,1 +1,1 @@
-web: bundle exec thin -R config.ru start -p $PORT -e development
+web: rvmsudo bundle exec thin -a 127.0.0.1 -R config.ru start -p 80
