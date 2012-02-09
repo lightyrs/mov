@@ -8,10 +8,11 @@ class CreateIdentities < ActiveRecord::Migration
       t.string    "handle"
       t.string    "avatar"
       t.string    "profile_url"
-      t.string    "presence_url"
+      t.text      "presence_urls"
       t.text      "bio"
-      t.string    "hometown"
+      t.string    "location"
       t.integer   "user_id"
+      t.datetime  "logged_in_at"
       t.timestamps
     end
     add_index :identities, [:uid, :provider], :unique => true

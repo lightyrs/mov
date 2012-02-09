@@ -55,12 +55,13 @@ ActiveRecord::Schema.define(:version => 20120208010810) do
     t.string   "handle"
     t.string   "avatar"
     t.string   "profile_url"
-    t.string   "presence_url"
+    t.text     "presence_urls"
     t.text     "bio"
-    t.string   "hometown"
+    t.string   "location"
     t.integer  "user_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "logged_in_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "identities", ["uid", "provider"], :name => "index_identities_on_uid_and_provider", :unique => true
@@ -125,9 +126,8 @@ ActiveRecord::Schema.define(:version => 20120208010810) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.datetime "logged_in_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

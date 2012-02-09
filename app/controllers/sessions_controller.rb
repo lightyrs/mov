@@ -12,7 +12,9 @@ class SessionsController < ApplicationController
       @identity = Identity.create_with_omniauth(auth)
     end
 
-    if signed_in?
+    if @identity == false
+      redirect_to root_url, notice: "Something went wrong. Please try again."
+    elsif signed_in?
       if @identity.user == current_user
         # User is signed in so they are trying to link an identity with their
         # account. But we found the identity and the user associated with it
@@ -23,7 +25,8 @@ class SessionsController < ApplicationController
         # The identity is not associated with the current_user so lets
         # associate the identity
         @identity.user = current_user
-        @identity.save()
+        @identity.logged_in_at = DateTime.now
+        @identity.save
         redirect_to root_url, notice: "Successfully linked that account!"
       end
     else
@@ -33,13 +36,14 @@ class SessionsController < ApplicationController
         self.current_user = @identity.user
       else
         @user = User.new(:name => auth["info"]["name"])
-        @user.save()
+        @user.save
 
         self.current_user = @user
 
         @identity.user = current_user
-        @identity.save()
       end
+      @identity.logged_in_at = DateTime.now
+      @identity.save
       redirect_to root_url, notice: "Logged in!"
     end
   end

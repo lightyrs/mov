@@ -16,6 +16,7 @@ group :development, :test do
   gem 'hirb'
   gem 'progress_bar'
   gem 'itslog'
+  gem 'awesome_print', :require => 'ap'
 end
 
 group :development do
