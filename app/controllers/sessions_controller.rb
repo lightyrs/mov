@@ -27,7 +27,6 @@ class SessionsController < ApplicationController
         # The identity is not associated with the current_user so lets
         # associate the identity
         @identity.user = current_user
-        IdentityLoginWorker.perform_async(@identity.id, DateTime.now)
         redirect_to root_url, notice: "Successfully linked that account!"
       end
     else
@@ -43,9 +42,9 @@ class SessionsController < ApplicationController
 
         @identity.user = current_user
       end
-      IdentityLoginWorker.perform_async(@identity.id, DateTime.now)
       redirect_to root_url, notice: "Logged in!"
     end
+    IdentityLoginWorker.perform_async(@identity.id, DateTime.now)
   end
 
   def destroy
