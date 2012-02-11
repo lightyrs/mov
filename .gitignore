@@ -1,3 +1,4 @@
 .env
 log/
 config/initializers/01_credentials.rb
+config/database.yml
