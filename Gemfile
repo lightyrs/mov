@@ -1,7 +1,10 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.1'
 gem 'mysql2', '~> 0.3.10'
+
+gem 'foreman'
+gem 'sidekiq'
 
 group :assets do
   gem 'hogan_assets'

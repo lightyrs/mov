@@ -13,18 +13,34 @@ class Identity < ActiveRecord::Base
 
 
   def self.find_with_omniauth(auth)
-    find_by_provider_and_uid(auth['provider'], auth['uid'])
+    identity = find_by_provider_and_uid(auth['provider'], auth['uid'])
+    IdentityRefreshWorker.perform_async(identity.id, auth)
+    identity
   end
 
   def self.create_with_omniauth(auth)
-    @identity = Identity.new(auth: auth, uid: auth['uid'], provider: auth['provider'])
-    if @identity.set_provider_data!
-      @identity.save
-      @identity
+    identity = Identity.new(auth: auth, uid: auth['uid'], provider: auth['provider'])
+    if identity.set_provider_data!
+      identity.save
+      identity
     else
-      @identity.destroy
+      identity.destroy
       false
     end
+  end
+
+  def self.refresh_provider_data(id, auth)
+    identity = Identity.find(id)
+    identity.auth = auth
+    if identity.set_provider_data!
+      identity.save
+    end
+  end
+
+  def self.refresh_logged_in_at(id, datetime)
+    identity = Identity.find(id)
+    identity.logged_in_at = datetime
+    identity.save
   end
 
   def set_provider_data!

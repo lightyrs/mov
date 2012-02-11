@@ -1,0 +1,23 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password: matt22
+  socket: /tmp/mysql.sock
+  database: mov_development
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password: matt22
+  socket: /tmp/mysql.sock
+  database: mov_test
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  username: root
+  password: matt22
+  socket: /tmp/mysql.sock
+  database: mov_production
